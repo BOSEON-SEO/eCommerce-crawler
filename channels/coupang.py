@@ -21,8 +21,7 @@ class CoupangPriceCrawler(BaseCrawler):
         try:
             self.page.goto(product_url, wait_until="networkidle", timeout=5000)
         except Exception as e:
-            print("페이지 로딩 실패:", e)
-            return -1
+            raise Exception("페이지 로딩 실패:", e)
 
         html = self.page.content()
         soup = BeautifulSoup(html, "html.parser")
@@ -48,8 +47,7 @@ class CoupangPriceCrawler(BaseCrawler):
         try:
             self.page.goto(product_url, wait_until="networkidle", timeout=5000)
         except Exception as e:
-            print("페이지 로딩 실패:", e)
-            return None
+            raise Exception("페이지 로딩 실패:", e)
         
         html = self.page.content()
         soup = BeautifulSoup(html, "html.parser")

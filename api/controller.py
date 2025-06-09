@@ -15,13 +15,8 @@ def get_price():
     if not channel or not url:
         return jsonify({"success": False, "error": "채널명과 상품 URL을 모두 입력하세요."}), 400
     
-    try:
-        price = PriceService.get_price(channel, url)
-        if price == -1:
-            return jsonify({"success": False, "channel": channel, "url": url, "price": None, "error": "가격 정보를 찾을 수 없음"}), 200
-        return jsonify({"success": True, "channel": channel, "url": url, "price": price})
-    except Exception as e:
-        return jsonify({"success": False, "error": str(e)}), 500
+    result = PriceService.get_price(channel, url)
+    return jsonify(result)
 
 @bp.route('/api/price_block', methods=['POST'])
 def get_price_block():
@@ -31,10 +26,5 @@ def get_price_block():
     if not channel or not url:
         return jsonify({"success": False, "error": "채널명과 상품 URL을 모두 입력하세요."}), 400
     
-    try:
-        price_block = PriceService.get_price_block(channel, url)
-        if price_block is None:
-            return jsonify({"success": False, "channel": channel, "url": url, "price_block": None, "error": "가격 정보를 찾을 수 없음"}), 200
-        return jsonify({"success": True, "channel": channel, "url": url, "price_block": price_block})
-    except Exception as e:
-        return jsonify({"success": False, "error": str(e)}), 500
+    result = PriceService.get_price_block(channel, url)
+    return jsonify(result)
