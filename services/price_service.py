@@ -5,7 +5,7 @@ class PriceService:
     def get_price(channel, url):
         print("get_price")
         if channel == "coupang":
-            crawler = CoupangPriceCrawler(headless=False)
+            crawler = CoupangPriceCrawler()
             try:
                 price = crawler.get_price(url)
             except Exception as e:
@@ -20,7 +20,7 @@ class PriceService:
     @staticmethod
     def get_price_block(channel, url):
         if channel == "coupang":
-            crawler = CoupangPriceCrawler(headless=False)
+            crawler = CoupangPriceCrawler()
             try:
                 price_block = crawler.get_price_block(url)
             except Exception as e:
