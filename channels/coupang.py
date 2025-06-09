@@ -1,8 +1,9 @@
 from playwright.sync_api import sync_playwright
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
+from core.base_crawler import BaseCrawler
 
-class CoupangPriceCrawler:
+class CoupangPriceCrawler(BaseCrawler):
     """
     쿠팡 상품 가격 추출 (Playwright + BeautifulSoup)
     """
@@ -48,7 +49,7 @@ class CoupangPriceCrawler:
             self.page.goto(product_url, wait_until="networkidle", timeout=5000)
         except Exception as e:
             print("페이지 로딩 실패:", e)
-            return -1
+            return None
         
         html = self.page.content()
         soup = BeautifulSoup(html, "html.parser")
