@@ -1,0 +1,12 @@
+Flask
+selenium
+webdriver-manager
+beautifulsoup4
+pandas
+python-dotenv
+requests
+setuptools
+undetected-chromedriver
+selenium-stealth
+fake_useragent
+playwright
