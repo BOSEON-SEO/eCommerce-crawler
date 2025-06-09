@@ -7,7 +7,7 @@ class CoupangPriceCrawler(BaseCrawler):
     """
     쿠팡 상품 가격 추출 (Playwright + BeautifulSoup)
     """
-    def __init__(self, headless=True, user_agent=None):
+    def __init__(self, headless=False, user_agent=None):
         self.p = sync_playwright().start()
         self.browser = self.p.chromium.launch(headless=headless)
         self.context = self.browser.new_context(
@@ -50,6 +50,7 @@ class CoupangPriceCrawler(BaseCrawler):
             raise Exception("페이지 로딩 실패:", e)
         
         html = self.page.content()
+        print(html)
         soup = BeautifulSoup(html, "html.parser")
         selector = ".prod-price-container > .prod-price"
 
